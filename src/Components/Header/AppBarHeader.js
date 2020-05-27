@@ -18,15 +18,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AppBarHeader() {
+export default function AppBarHeader(props) {
   const classes = useStyles();
-
+  const { selectedItem,handleSelectedItemChange} = props;
   return (
     <div className={classes.root}>
       <AppBar position="static" >
         <Toolbar >     
           <Typography variant="h6">
-                <CatagoryComboBox width = "200px"/>
+                <CatagoryComboBox width = "200px" selectedItem={selectedItem} handleSelectedItemChange = {handleSelectedItemChange} />
           </Typography>
           <Typography variant="h6" align = "left"  >
                 <SearchBar />

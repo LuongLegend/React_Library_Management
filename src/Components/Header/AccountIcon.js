@@ -36,7 +36,7 @@ const StyledMenuItem = withStyles((theme) => ({
     },
 }))(MenuItem);
 
-export default function CustomizedMenus() {
+export default function AccountIcon() {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
