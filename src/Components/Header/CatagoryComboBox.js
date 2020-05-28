@@ -8,7 +8,8 @@ export default function CatagoryComboBox(props) {
   const {selectedItem,handleSelectedItemChange} = props;
 
   const onHandleSelectedItemChange = (e,value) => {
-    handleSelectedItemChange(selectedItem,value)
+    if(catalogs.filter(item => item.name === value).length!==0)
+      handleSelectedItemChange(selectedItem,value)
 }
   const getCatalogs = async () => {
     const { data } = await axios.get('http://localhost:3333/catalog');
@@ -23,7 +24,6 @@ export default function CatagoryComboBox(props) {
       id="combo-box-demo"
       onInputChange = {onHandleSelectedItemChange}
       options={catalogs}
-      {...props}
       getOptionLabel={(option) => option.name}
       style={{ width: parseInt(props.width) }}
       renderInput={(params) =>
