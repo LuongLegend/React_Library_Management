@@ -3,38 +3,39 @@ import { Card, CardActionArea, CardMedia, CardContent, Typography, Grid } from '
 import { makeStyles } from '@material-ui/styles'
 const useStyles = makeStyles(theme => ({
     root: {
-        maxWidth: 1000,
-        display: 'flex',
+        //maxWidth: 1000,
+        //display: 'flex'
+        marginBottom : 10
     },
     media: {
-        display: 'flex',
         width: 150,
         height: 150,
-        // flexDirection: 'column',
+        //flexDirection: 'column',
         float: 'left'
     },
     content: {
-        display: 'flex',
-    }
-
+        paddingTop: 20,
+        marginLeft: 60,
+        float: 'left'
+    },
 }))
-export default function ProductRow() {
+export default function ProductRow(props) {
     const classes = useStyles();
+    const {title, description} = props;
     return (
         <Card className={classes.root}>
-            <CardActionArea>
+            <CardActionArea className={classes.root}>
                 <CardMedia
                     className={classes.media}
                     image="https://m.media-amazon.com/images/I/51z2HY7kn4L._AC_UY218_ML3_.jpg"
                     title="this is a picture"
                 />
-                <CardContent className={classes.content}>
-                    <Typography  variant="h5" align = "left">
-                        Lizard asfasdfasd asdf asdf ad
+                <CardContent className = {classes.content}>
+                    <Typography variant="h5"  align = "left" gutterBottom  >
+                       {title}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" align = "left">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                        across all continents except Antarctica
+                    <Typography variant="body2" align = "left" color="textSecondary"  >
+                        {description}
                     </Typography>
                 </CardContent>
             </CardActionArea>

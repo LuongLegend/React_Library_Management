@@ -48,9 +48,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar(props) {
     const classes = useStyles();
-
+    const {filterText, handleFilterTextChange} = props;
+    const onHandleFilterTextChange = (e) =>{
+        handleFilterTextChange(e.target.value);
+    }
     return (
         <div className={classes.root}>
             <div className={classes.search}>
@@ -59,6 +62,8 @@ export default function SearchAppBar() {
                 </div>
                 <InputBase
                     placeholder="Tìm kiếm..."
+                    value = {filterText}
+                    onChange = {onHandleFilterTextChange}
                     classes={{
                         root: classes.inputRoot,
                         input: classes.inputInput,

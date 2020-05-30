@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AppBarHeader(props) {
   const classes = useStyles();
   const { selectedItem,handleSelectedItemChange} = props;
+  const {filterText, handleFilterTextChange} = props;
   return (
     <div className={classes.root}>
       <AppBar position="static" >
@@ -29,7 +30,7 @@ export default function AppBarHeader(props) {
                 <CatagoryComboBox width = "200px" selectedItem={selectedItem} handleSelectedItemChange = {handleSelectedItemChange} />
           </Typography>
           <Typography variant="h6" align = "left"  >
-                <SearchBar />
+                <SearchBar filterText = {filterText} handleFilterTextChange = {handleFilterTextChange}/>
           </Typography>
           <Typography variant="h6" className={classes.title} align="right">
                 <AccountIcon />
