@@ -16,7 +16,7 @@ export default function HomePage() {
 
   const [selectedItem, setSelectedItem] = useState([]);
   const [filterText, setFilterText] = useState('');
-  const [products, setProducts] = useState(productss);
+  const [products, setProducts] = useState([]);
   const [msg, setMsg] = useState(null);
   const [noResult, setNoResult] = useState(null);
   const getProducts = async (filterText) => {
