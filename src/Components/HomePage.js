@@ -19,7 +19,7 @@ export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [msg, setMsg] = useState(null);
   const [noResult, setNoResult] = useState(null);
-  const getProducts = async (filterText) => {
+  const getProducts = async (filterText, selectedItem) => {
     if (filterText.trim().length === 0) {
       const { data } = await axios.get(`http://localhost:3333/book?q=${filterText}`);
       setProducts(data);
@@ -27,7 +27,7 @@ export default function HomePage() {
       setNoResult(null);
     }
     else {
-      const { data } = await axios.get(`http://localhost:3333/book?q=${filterText}`);
+      const { data } = await axios.get(`http://localhost:3333/book?q=${filterText}&c=${selectedItem.join(',')}`);
       if (typeof (data.result) === 'string') {
         setProducts([]);
         setMsg(data.msg);
@@ -41,8 +41,8 @@ export default function HomePage() {
     }
   }
   useEffect(() => {
-    getProducts(filterText) 
-  }, [filterText])
+    getProducts(filterText, selectedItem) 
+  }, [filterText,selectedItem])
   const classes = useStyles();
 
   const handleSelectedItemChange = (selectedItem, newValue, isSelected) => {

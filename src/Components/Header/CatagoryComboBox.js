@@ -30,7 +30,7 @@ export default function CatagoryComboBox(props) {
         <TextField
           {...params}
           label="Catagory"
-          variant="outlined"
+          variant="standard"
           {...props.params}
         />
       }
