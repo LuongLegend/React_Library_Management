@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import Snackbar from '@material-ui/core/Snackbar';
 import axios from 'axios'
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,15 +18,18 @@ function LoginButton(props) {
   const classes = useStyles();
   const { username, password } = props;
   const [open, setOpen] = useState(false); //open alert
+
+  let history = useHistory();
   const handleClick = () => {
     const getData = async () => {
       let { data } = await axios.post('http://localhost:3333/login', { username, password });
       if (data.token) {
-        alert('success')
         sessionStorage.setItem('jwt', data.token);
+        history.push("/");
       }
       else setOpen(true);
     };
+    
     getData()
   }
   const handleClose = (event, reason) => {
