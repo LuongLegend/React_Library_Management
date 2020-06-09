@@ -24,7 +24,8 @@ function LoginButton(props) {
     const getData = async () => {
       let { data } = await axios.post('http://localhost:3333/login', { username, password });
       if (data.token) {
-        sessionStorage.setItem('jwt', data.token);
+        localStorage.setItem('jwt', data.token);
+        localStorage.setItem('username', username);
         history.push("/");
       }
       else setOpen(true);

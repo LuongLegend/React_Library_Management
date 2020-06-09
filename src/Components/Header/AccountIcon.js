@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { useHistory } from 'react-router-dom'
 const StyledMenu = withStyles({
     paper: {
         border: '1px solid #d3d4d5',
@@ -38,8 +39,13 @@ const StyledMenuItem = withStyles((theme) => ({
 
 export default function AccountIcon() {
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [isLogin, setIsLogin] = React.useState(true);
+    let history = useHistory();
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+        if (!localStorage.username) {
+            history.push("/login");
+        }
     };
 
     const handleClose = () => {
@@ -55,6 +61,8 @@ export default function AccountIcon() {
                 onClick={handleClick}
                 fontSize="large"
             />
+            {
+            isLogin &&
             <StyledMenu
                 id="customized-menu"
                 anchorEl={anchorEl}
@@ -66,7 +74,7 @@ export default function AccountIcon() {
                     <ListItemIcon>
                         <AccountCircleIcon fontSize="small" />
                     </ListItemIcon>
-                    <ListItemText primary="Sent mail" />
+                    <ListItemText primary={localStorage.getItem('username')} />
                 </StyledMenuItem>
                 <StyledMenuItem>
                     <ListItemText primary="Quản trị" />
@@ -75,9 +83,10 @@ export default function AccountIcon() {
                     <ListItemText primary="Đã lưu" />
                 </StyledMenuItem>
                 <StyledMenuItem>
-                    <ListItemText primary="Đăng xuất" />
+                    <ListItemText primary="Đăng xuất" onClick={() => { localStorage.clear(); setIsLogin(false);}} />
                 </StyledMenuItem>
             </StyledMenu>
+            }
         </div>
     );
 }
