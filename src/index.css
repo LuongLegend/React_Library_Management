@@ -6,6 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   justify-content: center;
+  justify-self: center;
+  text-justify: center;
 }
 
 code {
