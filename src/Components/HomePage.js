@@ -27,7 +27,7 @@ export default function HomePage() {
   const [productsLength, setProductsLength] = useState(0);
   const getProducts = async (filterText, selectedItem, productsLength) => {
     setSeeMoreCount(1);
-    if (filterText.trim().length === 0) {
+    if (filterText.trim().length === 0 && selectedItem.length === 0) {
       const { data } = await axios.get(`http://localhost:3333/book`);
       const allData = await axios.get(`http://localhost:3333/book?isLimited=f`);
       setProductsLength(allData.data.length);
