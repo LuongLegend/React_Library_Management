@@ -4,8 +4,6 @@ import {AppBar, Toolbar, Typography} from '@material-ui/core';
 import CatagoryComboBox from './CatagoryComboBox'
 import AccountIcon from './AccountIcon'
 import SearchBar from './SearchBar'
-// import {BrowserRouter, Route, Switch} from 'react-router-dom'
-// import Login from '../Login/Login'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -18,24 +16,21 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function AppBarHeader(props) {
+export default function AppBarHeader() {
   const classes = useStyles();
-  const { selectedItem,handleSelectedItemChange} = props;
-  const {filterText, handleFilterTextChange} = props;
   return (
     <div className={classes.root}>
       <AppBar position="static" >
         <Toolbar >     
           <Typography variant="h6">
-                <CatagoryComboBox width = "200px" selectedItem={selectedItem} handleSelectedItemChange = {handleSelectedItemChange} />
+                <CatagoryComboBox width = "200px" />
           </Typography>
           <Typography variant="h6" align = "left"  >
-                <SearchBar filterText = {filterText} handleFilterTextChange = {handleFilterTextChange}/>
+                <SearchBar />
           </Typography>
           <Typography variant="h6" className={classes.title} align="right">
                 <AccountIcon />
           </Typography>
-          {/* <Button color="inherit">Login</Button> */}
         </Toolbar>
       </AppBar>
     </div>

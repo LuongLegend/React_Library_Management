@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
-
+import { SearchBookContext } from '../HomePage'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -48,12 +48,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SearchAppBar(props) {
+export default function SearchAppBar() {
     const classes = useStyles();
-    const {filterText, handleFilterTextChange} = props;
-    const onHandleFilterTextChange = (e) =>{
-        handleFilterTextChange(e.target.value);
-    }
+    const { filterText, handleFilterTextChange } = useContext(SearchBookContext);
     return (
         <div className={classes.root}>
             <div className={classes.search}>
@@ -62,14 +59,14 @@ export default function SearchAppBar(props) {
                 </div>
                 <InputBase
                     placeholder="Tìm kiếm..."
-                    value = {filterText}
-                    onChange = {onHandleFilterTextChange}
+                    value={filterText}
+                    onChange={(e) => handleFilterTextChange(e.target.value)}
                     classes={{
                         root: classes.inputRoot,
                         input: classes.inputInput,
                     }}
                     inputProps={{ 'aria-label': 'search' }}
-                    type = "search"
+                    type="search"
                 />
             </div>
         </div>
